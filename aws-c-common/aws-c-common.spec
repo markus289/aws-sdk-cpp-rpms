@@ -1,6 +1,6 @@
 Name:           aws-c-common
 Version:        0.4.34
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Core c99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -45,7 +45,11 @@ make %{?_smp_mflags}
 %make_install
 
 %check
+%if 0%{?el7}
+ctest3 -V %{?_smp_mflags}
+%else
 ctest -V %{?_smp_mflags}
+%endif
 
 %files
 %{_libdir}/libaws-c-common.so.*
@@ -57,5 +61,8 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Mon Mar 09 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.34-2
+- Fix building on EL 7
+
 * Mon Mar 09 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.34-1
 - Initial RPM release

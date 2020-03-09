@@ -1,6 +1,6 @@
 Name:           aws-c-common
 Version:        0.4.34
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Core c99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -12,7 +12,7 @@ BuildRequires:  cmake3 >= 3.0
 BuildRequires:  cmake >= 3.0
 %endif
 
-BuildRequires:  gcc-c++
+BuildRequires:  gcc
 
 %description
 Core c99 package for AWS SDK for C. Includes cross-platform primitives,
@@ -61,6 +61,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Mon Mar 09 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.34-3
+- This package requires a C compiler, not a C++ compiler
+
 * Mon Mar 09 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.34-2
 - Fix building on EL 7
 

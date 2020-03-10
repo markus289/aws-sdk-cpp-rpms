@@ -1,0 +1,29 @@
+From 7120b482525f0456920f3a8193160f4bac5b7614 Mon Sep 17 00:00:00 2001
+From: Markus Rothe <markus.rothe@rite.cc>
+Date: Fri, 6 Mar 2020 19:29:44 +0000
+Subject: [PATCH] packager: include 64-bit glibc on RPM based hosts
+
+`rpm --query --list glibc` may list files from glibc.i686 and
+glibc.x86_64 if both are installed. Make sure that only the 64-bit
+libraries are included.
+
+This fixes #83.
+---
+ packaging/packager | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/packaging/packager b/packaging/packager
+index 32b2db0..3d689c0 100755
+--- a/packaging/packager
++++ b/packaging/packager
+@@ -73,8 +73,8 @@ function package_libc_via_dpkg() {
+ 
+ function package_libc_via_rpm() {
+     if type rpm > /dev/null 2>&1; then
+-       if [[ $(rpm --query --list glibc | wc -l) -gt 1 ]]; then
+-           rpm --query --list glibc | sed -E '/\.so$|\.so\.[0-9]+$/!d'
++       if [[ $(rpm --query --list glibc.x86_64 | wc -l) -gt 1 ]]; then
++           rpm --query --list glibc.x86_64 | sed -E '/\.so$|\.so\.[0-9]+$/!d'
+        fi
+     fi
+ }

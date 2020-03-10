@@ -1,6 +1,6 @@
 Name:           aws-sdk-cpp
 Version:        1.7.292
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -46,6 +46,7 @@ needed to develop applications that use aws-sdk-cpp.
 
 %prep
 %setup -q
+sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 
 %build
 %if 0%{?el7}
@@ -82,5 +83,8 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.292-2
+- Nuke compiler options '-Werror' and '-pedantic'
+
 * Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.292-1
 - Initial RPM release

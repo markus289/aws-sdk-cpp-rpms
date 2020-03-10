@@ -1,6 +1,6 @@
 Name:           aws-c-common
 Version:        0.4.34
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -33,9 +33,13 @@ needed to develop applications that use aws-c-common.
 
 %build
 %if 0%{?el7}
-%cmake3 -DBUILD_SHARED_LIBS:BOOL=TRUE
+%cmake3 \
+    -DCMAKE_BUILD_TYPE:STRING=Release \
+    -DBUILD_SHARED_LIBS:BOOL=TRUE
 %else
-%cmake -DBUILD_SHARED_LIBS:BOOL=TRUE
+%cmake \
+    -DCMAKE_BUILD_TYPE:STRING=Release \
+    -DBUILD_SHARED_LIBS:BOOL=TRUE
 %endif
 make %{?_smp_mflags}
 
@@ -59,6 +63,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.34-6
+- Set CMAKE_BUILD_TYPE to 'Release', as the tests fail otherwise
+
 * Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.34-5
 - Don't set CMAKE_BUILD_TYPE
 

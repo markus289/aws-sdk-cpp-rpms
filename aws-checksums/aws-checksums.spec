@@ -1,6 +1,6 @@
 Name:           aws-checksums
 Version:        0.1.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon's CRC32c and CRC32 implementations
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -60,5 +60,8 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.5-2
+- rebuilt
+
 * Mon Mar 09 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.5-1
 - Initial RPM release

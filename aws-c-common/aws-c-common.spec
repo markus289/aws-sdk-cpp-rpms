@@ -1,7 +1,7 @@
 Name:           aws-c-common
 Version:        0.4.34
-Release:        4%{?dist}
-Summary:        Core c99 package for AWS SDK for C
+Release:        5%{?dist}
+Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
 Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
@@ -17,7 +17,7 @@ BuildRequires:  cmake >= 3.0
 BuildRequires:  gcc
 
 %description
-Core c99 package for AWS SDK for C. Includes cross-platform primitives,
+Core C99 package for AWS SDK for C. Includes cross-platform primitives,
 configuration, data structures, and error handling.
 
 %package devel
@@ -33,13 +33,9 @@ needed to develop applications that use aws-c-common.
 
 %build
 %if 0%{?el7}
-%cmake3 \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
-    -DBUILD_SHARED_LIBS:BOOL=TRUE
+%cmake3 -DBUILD_SHARED_LIBS:BOOL=TRUE
 %else
-%cmake \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
-    -DBUILD_SHARED_LIBS:BOOL=TRUE
+%cmake -DBUILD_SHARED_LIBS:BOOL=TRUE
 %endif
 make %{?_smp_mflags}
 
@@ -63,6 +59,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.34-5
+- Don't set CMAKE_BUILD_TYPE
+
 * Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.34-4
 - Add patches to allow building of aws-c-event-stream package
 

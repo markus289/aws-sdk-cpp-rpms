@@ -1,6 +1,6 @@
 Name:           aws-lambda-cpp
 Version:        0.2.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        C++ implementation of the AWS Lambda runtime
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -15,8 +15,6 @@ BuildRequires:  cmake >= 3.9
 %endif
 
 BuildRequires:  gcc-c++
-# the AWS SDK for C++ is required to build and execute the tests
-BuildRequires:  aws-sdk-cpp-devel
 BuildRequires:  libcurl-devel
 
 Requires:       libcurl
@@ -51,13 +49,6 @@ make %{?_smp_mflags}
 %install
 %make_install
 
-%check
-%if 0%{?el7}
-ctest3 -V %{?_smp_mflags}
-%else
-ctest -V %{?_smp_mflags}
-%endif
-
 %files
 %{_libdir}/libaws-lambda-runtime.so.*
 
@@ -67,5 +58,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Wed Mar 11 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.6-2
+- Make libdir patch apply
+- Disable tests as they want to make HTTP requests to remote hosts
+
 * Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.6-1
 - Initial RPM release

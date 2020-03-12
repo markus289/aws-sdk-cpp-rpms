@@ -1,6 +1,6 @@
 Name:           aws-sdk-cpp
-Version:        1.7.292
-Release:        2%{?dist}
+Version:        1.7.294
+Release:        1%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -15,16 +15,16 @@ BuildRequires:  cmake >= 3.1
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  aws-c-common-devel
-BuildRequires:  aws-checksums-devel
 BuildRequires:  aws-c-event-stream-devel
+BuildRequires:  aws-checksums-devel
 BuildRequires:  libcurl-devel
 BuildRequires:  openssl-devel
 BuildRequires:  pulseaudio-libs-devel
 BuildRequires:  zlib-devel
 
 Requires:       aws-c-common
-Requires:       aws-checksums
 Requires:       aws-c-event-stream
+Requires:       aws-checksums
 Requires:       libcurl
 Requires:       openssl-libs
 Requires:       pulseaudio-libs
@@ -39,6 +39,12 @@ portability (Windows, OSX, Linux, and mobile).
 %package devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       aws-c-common-devel
+Requires:       aws-c-event-stream-devel
+Requires:       aws-checksums-devel
+Requires:       libcurl-devel
+Requires:       openssl-devel
+Requires:       zlib-devel
 
 %description devel
 This package contains the header files, libraries and cmake supplementals
@@ -51,13 +57,11 @@ sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 %build
 %if 0%{?el7}
 %cmake3 \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
     -DBUILD_SHARED_LIBS:BOOL=TRUE \
     -DBUILD_DEPS:BOOL=FALSE \
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE
 %else
 %cmake \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
     -DBUILD_SHARED_LIBS:BOOL=TRUE \
     -DBUILD_DEPS:BOOL=FALSE \
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE
@@ -83,6 +87,12 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Thu Mar 12 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.294-1
+- Bump to 1.7.294
+- Don't do a 'Release' build
+- The cmake files in the devel package search for several packages. Account for
+  this in the dependencies.
+
 * Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.292-2
 - Nuke compiler options '-Werror' and '-pedantic'
 

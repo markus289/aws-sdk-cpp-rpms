@@ -1,6 +1,6 @@
 Name:           aws-c-event-stream
 Version:        0.1.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        C99 implementation of the vnd.amazon.eventstream content-type
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -27,6 +27,10 @@ with these streams.
 %package devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+# the cmake files included in this package search for the following two
+# packages
+Requires:       aws-c-common-devel
+Requires:       aws-checksums-devel
 
 %description devel
 This package contains the header files, libraries and cmake supplementals
@@ -37,13 +41,9 @@ needed to develop applications that use aws-c-event-stream.
 
 %build
 %if 0%{?el7}
-%cmake3 \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
-    -DBUILD_SHARED_LIBS:BOOL=TRUE
+%cmake3 -DBUILD_SHARED_LIBS:BOOL=TRUE
 %else
-%cmake \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
-    -DBUILD_SHARED_LIBS:BOOL=TRUE
+%cmake -DBUILD_SHARED_LIBS:BOOL=TRUE
 %endif
 make %{?_smp_mflags}
 
@@ -66,6 +66,10 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Thu Mar 12 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.4-3
+- Don't do a 'Release' build
+- The devel package requires aws-c-common-devel and aws-checksums-devel
+
 * Tue Mar 10 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.4-2
 - rebuilt
 

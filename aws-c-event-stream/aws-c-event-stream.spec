@@ -1,6 +1,6 @@
 Name:           aws-c-event-stream
 Version:        0.1.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        C99 implementation of the vnd.amazon.eventstream content-type
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -66,6 +66,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Fri Mar 27 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.4-4
+- rebuilt
+
 * Thu Mar 12 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.4-3
 - Don't do a 'Release' build
 - The devel package requires aws-c-common-devel and aws-checksums-devel

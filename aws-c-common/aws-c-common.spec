@@ -1,12 +1,11 @@
 Name:           aws-c-common
 Version:        0.4.35
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
 Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Patch0:         0001-add-modules-to-cmake-module-path.patch
-Patch1:         0002-prefix-path-vars.patch
 
 %if 0%{?el7}
 BuildRequires:  cmake3 >= 3.0
@@ -64,6 +63,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Mon Mar 30 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.35-2
+- Update patch for CMake
+
 * Fri Mar 27 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.35-1
 - Bump to 0.4.35
 

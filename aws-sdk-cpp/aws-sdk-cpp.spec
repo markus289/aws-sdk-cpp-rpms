@@ -1,6 +1,6 @@
 Name:           aws-sdk-cpp
 Version:        1.7.313
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -59,12 +59,14 @@ sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 %cmake3 \
     -DBUILD_SHARED_LIBS:BOOL=TRUE \
     -DBUILD_DEPS:BOOL=FALSE \
-    -DAUTORUN_UNIT_TESTS:BOOL=FALSE
+    -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
+    -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
 %else
 %cmake \
     -DBUILD_SHARED_LIBS:BOOL=TRUE \
     -DBUILD_DEPS:BOOL=FALSE \
-    -DAUTORUN_UNIT_TESTS:BOOL=FALSE
+    -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
+    -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
 %endif
 make %{?_smp_mflags}
 
@@ -87,6 +89,9 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Wed Apr 08 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.313-2
+- Disable custom memory management
+
 * Wed Apr 08 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.313-1
 - Bump to 1.7.313
 

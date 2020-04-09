@@ -1,6 +1,6 @@
 Name:           aws-sdk-cpp
-Version:        1.7.313
-Release:        2%{?dist}
+Version:        1.7.314
+Release:        1%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -89,6 +89,9 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Thu Apr 09 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.314-1
+- Bump to 1.7.314
+
 * Wed Apr 08 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.313-2
 - Disable custom memory management
 

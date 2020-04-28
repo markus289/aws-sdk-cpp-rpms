@@ -1,11 +1,10 @@
 Name:           aws-c-event-stream
 Version:        0.1.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        C99 implementation of the vnd.amazon.eventstream content-type
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
 Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Patch0:         0001-find-aws-c-common.patch
 
 %if 0%{?el7}
 BuildRequires:  cmake3 >= 3.1
@@ -37,7 +36,7 @@ This package contains the header files, libraries and cmake supplementals
 needed to develop applications that use aws-c-event-stream.
 
 %prep
-%autosetup -p1
+%autosetup
 
 %build
 %if 0%{?el7}
@@ -66,6 +65,10 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Tue Apr 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.5-2
+- Delete patch, not strictly necessary, keep the package as close to upstream
+  as possible
+
 * Thu Apr 23 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.5-1
 - Bump to 0.1.5
 

@@ -1,5 +1,5 @@
 Name:           aws-sdk-cpp
-Version:        1.7.324
+Version:        1.7.326
 Release:        1%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
@@ -89,6 +89,9 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Sat May 02 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.326-1
+- Bump to 1.7.326
+
 * Thu Apr 30 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.324-1
 - Bump to 1.7.324
 

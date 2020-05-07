@@ -52,7 +52,7 @@ This package contains the header files, libraries and cmake supplementals
 needed to develop applications that use aws-sdk-cpp.
 
 %prep
-%autosetup
+%autosetup -p1
 sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 
 %build

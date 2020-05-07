@@ -1,6 +1,6 @@
 Name:           aws-sdk-cpp
 Version:        1.7.329
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -52,7 +52,7 @@ This package contains the header files, libraries and cmake supplementals
 needed to develop applications that use aws-sdk-cpp.
 
 %prep
-%setup -q
+%autosetup
 sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 
 %build
@@ -90,6 +90,9 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Thu May 07 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.329-2
+- Really apply patch
+
 * Thu May 07 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.329-1
 - Bump to 1.7.329, add patch for EPEL 7
 

@@ -1,10 +1,11 @@
 Name:           aws-sdk-cpp
-Version:        1.7.328
+Version:        1.7.329
 Release:        1%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
 Source0:        https://github.com/aws/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Patch0:         0001-RetryStrategy.h-include-memory-for-shared_ptr.patch
 
 %if 0%{?el7}
 BuildRequires:  cmake3 >= 3.1
@@ -89,6 +90,9 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Thu May 07 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.329-1
+- Bump to 1.7.329, add patch for EPEL 7
+
 * Wed May 06 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.328-1
 - Bump to 1.7.328
 

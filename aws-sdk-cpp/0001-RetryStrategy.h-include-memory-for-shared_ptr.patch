@@ -1,0 +1,37 @@
+From 5fba71ff837208e9d63e8d54388ad4a11a4d63f5 Mon Sep 17 00:00:00 2001
+From: Markus Rothe <markus.rothe@rite.cc>
+Date: Wed, 6 May 2020 08:51:32 +0200
+Subject: [PATCH] RetryStrategy.h: include <memory> for shared_ptr
+
+On RHEL/CentOS 7, the default compiler is GCC 4.8.5, which results in
+this compile error:
+
+    In file included from /builddir/build/BUILD/aws-sdk-cpp-1.7.328/aws-cpp-sdk-core/include/aws/core/client/DefaultRetryStrategy.h:19:0,
+                     from /builddir/build/BUILD/aws-sdk-cpp-1.7.328/aws-cpp-sdk-core/source/client/DefaultRetryStrategy.cpp:16:
+    /builddir/build/BUILD/aws-sdk-cpp-1.7.328/aws-cpp-sdk-core/include/aws/core/client/RetryStrategy.h:40:32: error: 'shared_ptr' is not a member of 'std'
+             typedef Utils::Outcome<std::shared_ptr<Aws::Http::HttpResponse>, AWSError<CoreErrors>> HttpResponseOutcome;
+
+Include <memory> so that std::shared_ptr is available in the header
+file.
+
+The above error does not occur on other platforms (e.g. Fedora 31 with
+GCC 9.3.1).
+---
+ aws-cpp-sdk-core/include/aws/core/client/RetryStrategy.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/aws-cpp-sdk-core/include/aws/core/client/RetryStrategy.h b/aws-cpp-sdk-core/include/aws/core/client/RetryStrategy.h
+index e3276d0d4c..85b3a3507b 100644
+--- a/aws-cpp-sdk-core/include/aws/core/client/RetryStrategy.h
++++ b/aws-cpp-sdk-core/include/aws/core/client/RetryStrategy.h
+@@ -17,6 +17,7 @@
+ 
+ #include <aws/core/Core_EXPORTS.h>
+ #include <aws/core/utils/threading/ReaderWriterLock.h>
++#include <memory>
+ 
+ namespace Aws
+ {
+-- 
+2.25.4
+

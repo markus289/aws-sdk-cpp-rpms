@@ -1,6 +1,6 @@
 Name:           aws-checksums
-Version:        0.1.5
-Release:        5%{?dist}
+Version:        0.1.7
+Release:        1%{?dist}
 Summary:        Amazon's CRC32c and CRC32 implementations
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -56,6 +56,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Wed Jun 10 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.7-1
+- Bump to 0.1.7
+
 * Wed Apr 08 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.5-5
 - Do build as a shared library
 - As it turns out, I want to turn of CUSTOM_MEMORY_MANAGEMENT in aws-sdk-cpp

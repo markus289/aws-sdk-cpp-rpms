@@ -1,5 +1,5 @@
 Name:           aws-sdk-cpp
-Version:        1.7.365
+Version:        1.8.1
 Release:        1%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
@@ -60,15 +60,13 @@ sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
     -DBUILD_SHARED_LIBS:BOOL=TRUE \
     -DBUILD_DEPS:BOOL=FALSE \
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
-    -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE \
-    -DBUILD_ONLY='accessanalyzer;access-management;acm;acm-pca;alexaforbusiness;amplify;apigateway;apigatewaymanagementapi;apigatewayv2;appconfig;application-autoscaling;application-insights;appmesh;appstream;appsync;athena;autoscaling;autoscaling-plans;AWSMigrationHub;awstransfer;backup;batch;budgets;ce;chime;cloud9;clouddirectory;cloudformation;cloudfront;cloudhsm;cloudhsmv2;cloudsearch;cloudsearchdomain;cloudtrail;codeartifact;codebuild;codecommit;codedeploy;codeguruprofiler;codeguru-reviewer;codepipeline;codestar;codestar-connections;codestar-notifications;cognito-identity;cognito-idp;cognito-sync;comprehend;comprehendmedical;compute-optimizer;config;connect;connectparticipant;cur;dataexchange;datapipeline;datasync;dax;detective;devicefarm;directconnect;discovery;dlm;dms;docdb;ds;dynamodb;dynamodbstreams;ebs;ec2;ec2-instance-connect;ecr;ecs;eks;elasticache;elasticbeanstalk;elasticfilesystem;elastic-inference;elasticloadbalancing;elasticloadbalancingv2;elasticmapreduce;elastictranscoder;email;es;eventbridge;events;firehose;fms;forecast;forecastquery;frauddetector;gamelift;glacier;globalaccelerator;glue;greengrass;groundstation;guardduty;health;iam;identity-management;imagebuilder;importexport;inspector;iot;iot1click-devices;iot1click-projects;iotanalytics;iot-data;iotevents;iotevents-data;iot-jobs-data;iotsecuretunneling;iotsitewise;iotthingsgraph;kafka;kendra;kinesis;kinesisanalytics;kinesisanalyticsv2;kinesisvideo;kinesis-video-archived-media;kinesis-video-media;kinesis-video-signaling;kms;lakeformation;lambda;lex;lex-models;license-manager;lightsail;logs;machinelearning;macie;macie2;managedblockchain;marketplace-catalog;marketplacecommerceanalytics;marketplace-entitlement;mediaconnect;mediaconvert;medialive;mediapackage;mediapackage-vod;mediastore;mediastore-data;mediatailor;meteringmarketplace;migrationhub-config;mobile;mobileanalytics;monitoring;mq;mturk-requester;neptune;networkmanager;opsworks;opsworkscm;organizations;outposts;personalize;personalize-events;personalize-runtime;pi;pinpoint;pinpoint-email;polly;pricing;qldb;qldb-session;queues;quicksight;ram;rds;rds-data;redshift;rekognition;resource-groups;resourcegroupstaggingapi;robomaker;route53;route53domains;route53resolver;s3;s3control;s3-encryption;sagemaker;sagemaker-a2i-runtime;sagemaker-runtime;savingsplans;schemas;sdb;secretsmanager;securityhub;serverlessrepo;servicecatalog;servicediscovery;service-quotas;sesv2;shield;signer;sms;sms-voice;snowball;sns;sqs;ssm;sso;sso-oidc;states;storagegateway;sts;support;swf;synthetics;textract;text-to-speech;transcribe;transcribestreaming;transfer;translate;waf;waf-regional;wafv2;workdocs;worklink;workmail;workmailmessageflow;workspaces;xray'
+    -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
 %else
 %cmake \
     -DBUILD_SHARED_LIBS:BOOL=TRUE \
     -DBUILD_DEPS:BOOL=FALSE \
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
-    -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE \
-    -DBUILD_ONLY='accessanalyzer;access-management;acm;acm-pca;alexaforbusiness;amplify;apigateway;apigatewaymanagementapi;apigatewayv2;appconfig;application-autoscaling;application-insights;appmesh;appstream;appsync;athena;autoscaling;autoscaling-plans;AWSMigrationHub;awstransfer;backup;batch;budgets;ce;chime;cloud9;clouddirectory;cloudformation;cloudfront;cloudhsm;cloudhsmv2;cloudsearch;cloudsearchdomain;cloudtrail;codeartifact;codebuild;codecommit;codedeploy;codeguruprofiler;codeguru-reviewer;codepipeline;codestar;codestar-connections;codestar-notifications;cognito-identity;cognito-idp;cognito-sync;comprehend;comprehendmedical;compute-optimizer;config;connect;connectparticipant;cur;dataexchange;datapipeline;datasync;dax;detective;devicefarm;directconnect;discovery;dlm;dms;docdb;ds;dynamodb;dynamodbstreams;ebs;ec2;ec2-instance-connect;ecr;ecs;eks;elasticache;elasticbeanstalk;elasticfilesystem;elastic-inference;elasticloadbalancing;elasticloadbalancingv2;elasticmapreduce;elastictranscoder;email;es;eventbridge;events;firehose;fms;forecast;forecastquery;frauddetector;gamelift;glacier;globalaccelerator;glue;greengrass;groundstation;guardduty;health;iam;identity-management;imagebuilder;importexport;inspector;iot;iot1click-devices;iot1click-projects;iotanalytics;iot-data;iotevents;iotevents-data;iot-jobs-data;iotsecuretunneling;iotsitewise;iotthingsgraph;kafka;kendra;kinesis;kinesisanalytics;kinesisanalyticsv2;kinesisvideo;kinesis-video-archived-media;kinesis-video-media;kinesis-video-signaling;kms;lakeformation;lambda;lex;lex-models;license-manager;lightsail;logs;machinelearning;macie;macie2;managedblockchain;marketplace-catalog;marketplacecommerceanalytics;marketplace-entitlement;mediaconnect;mediaconvert;medialive;mediapackage;mediapackage-vod;mediastore;mediastore-data;mediatailor;meteringmarketplace;migrationhub-config;mobile;mobileanalytics;monitoring;mq;mturk-requester;neptune;networkmanager;opsworks;opsworkscm;organizations;outposts;personalize;personalize-events;personalize-runtime;pi;pinpoint;pinpoint-email;polly;pricing;qldb;qldb-session;queues;quicksight;ram;rds;rds-data;redshift;rekognition;resource-groups;resourcegroupstaggingapi;robomaker;route53;route53domains;route53resolver;s3;s3control;s3-encryption;sagemaker;sagemaker-a2i-runtime;sagemaker-runtime;savingsplans;schemas;sdb;secretsmanager;securityhub;serverlessrepo;servicecatalog;servicediscovery;service-quotas;sesv2;shield;signer;sms;sms-voice;snowball;sns;sqs;ssm;sso;sso-oidc;states;storagegateway;sts;support;swf;synthetics;textract;text-to-speech;transcribe;transcribestreaming;transfer;translate;waf;waf-regional;wafv2;workdocs;worklink;workmail;workmailmessageflow;workspaces;xray'
+    -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
 %endif
 make %{?_smp_mflags}
 
@@ -91,6 +89,9 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Wed Jul 01 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.1-1
+- Bump to 1.8.1
+
 * Tue Jun 30 2020 Markus Rothe <markus.rothe@rite.cc> - 1.7.365-1
 - Bump to 1.7.365
 

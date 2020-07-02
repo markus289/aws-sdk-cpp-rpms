@@ -1,6 +1,6 @@
 Name:           aws-sdk-cpp
 Version:        1.8.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -57,13 +57,11 @@ sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 %build
 %if 0%{?el7}
 %cmake3 \
-    -DBUILD_SHARED_LIBS:BOOL=TRUE \
     -DBUILD_DEPS:BOOL=FALSE \
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
     -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
 %else
 %cmake \
-    -DBUILD_SHARED_LIBS:BOOL=TRUE \
     -DBUILD_DEPS:BOOL=FALSE \
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
     -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE

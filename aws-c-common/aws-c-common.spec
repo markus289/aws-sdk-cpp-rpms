@@ -1,6 +1,6 @@
 Name:           aws-c-common
 Version:        0.4.48
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -32,13 +32,9 @@ sed -i -e "s/ -Werror//" cmake/AwsCFlags.cmake
 
 %build
 %if 0%{?el7}
-%cmake3 \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
-    -DBUILD_SHARED_LIBS:BOOL=TRUE
+%cmake3 -DCMAKE_BUILD_TYPE:STRING=Release
 %else
-%cmake \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
-    -DBUILD_SHARED_LIBS:BOOL=TRUE
+%cmake -DCMAKE_BUILD_TYPE:STRING=Release
 %endif
 %make_build
 

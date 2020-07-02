@@ -68,7 +68,7 @@ sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
     -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
 %endif
-make %{?_smp_mflags}
+%make_build
 
 %install
 %make_install

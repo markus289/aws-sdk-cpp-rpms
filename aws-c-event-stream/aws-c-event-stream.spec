@@ -1,6 +1,6 @@
 Name:           aws-c-event-stream
 Version:        0.1.5
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        C99 implementation of the vnd.amazon.eventstream content-type
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -65,6 +65,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Wed Jul 15 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.5-7
+- rebuilt
+
 * Tue Jun 23 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.5-4
 - rebuilt
 

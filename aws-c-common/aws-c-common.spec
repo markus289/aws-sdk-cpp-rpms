@@ -1,6 +1,6 @@
 Name:           aws-c-common
-Version:        0.4.48
-Release:        3%{?dist}
+Version:        0.4.49
+Release:        1%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -58,6 +58,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Wed Jul 15 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.49-1
+- Bump to 0.4.49
+
 * Tue Jun 30 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.48-1
 - Bump to 0.4.48
 

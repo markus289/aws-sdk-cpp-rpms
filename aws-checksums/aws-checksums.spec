@@ -1,6 +1,6 @@
 Name:           aws-checksums
 Version:        0.1.7
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Amazon's CRC32c and CRC32 implementations
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -28,7 +28,7 @@ This package contains the header files, libraries and cmake supplementals
 needed to develop applications that use aws-checksums.
 
 %prep
-%setup -q
+%autosetup
 
 %build
 %if 0%{?el7}
@@ -36,16 +36,28 @@ needed to develop applications that use aws-checksums.
 %else
 %cmake
 %endif
+%if 0%{?rhel}
 %make_build
+%else
+%cmake_build
+%endif
 
 %install
+%if 0%{?rhel}
 %make_install
+%else
+%cmake_install
+%endif
 
 %check
+%if 0%{?rhel}
 %if 0%{?el7}
 ctest3 -V %{?_smp_mflags}
 %else
 ctest -V %{?_smp_mflags}
+%endif
+%else
+%ctest
 %endif
 
 %files
@@ -56,6 +68,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Mon Jul 27 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.7-4
+- Use cmake specific macros
+
 * Wed Jun 10 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.7-1
 - Bump to 0.1.7
 

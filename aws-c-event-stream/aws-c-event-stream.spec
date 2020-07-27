@@ -1,15 +1,15 @@
 Name:           aws-c-event-stream
 Version:        0.1.5
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        C99 implementation of the vnd.amazon.eventstream content-type
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
 Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 %if 0%{?el7}
-BuildRequires:  cmake3 >= 3.1
+BuildRequires:  cmake3
 %else
-BuildRequires:  cmake >= 3.1
+BuildRequires:  cmake
 %endif
 
 BuildRequires:  gcc
@@ -44,16 +44,28 @@ needed to develop applications that use aws-c-event-stream.
 %else
 %cmake
 %endif
+%if 0%{?rhel}
 %make_build
+%else
+%cmake_build
+%endif
 
 %install
+%if 0%{?rhel}
 %make_install
+%else
+%cmake_install
+%endif
 
 %check
+%if 0%{?rhel}
 %if 0%{?el7}
 ctest3 -V %{?_smp_mflags}
 %else
 ctest -V %{?_smp_mflags}
+%endif
+%else
+%ctest
 %endif
 
 %files
@@ -65,6 +77,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Mon Jul 27 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.5-8
+- Use cmake specific macros
+
 * Wed Jul 15 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.5-7
 - rebuilt
 

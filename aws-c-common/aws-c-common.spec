@@ -44,7 +44,12 @@ sed -i -e "s/ -Werror//" cmake/AwsCFlags.cmake
 %endif
 
 %install
+# cmake_install is not yet available in el7/el8
+%if 0%{?rhel}
 %make_install
+%else
+%cmake_install
+%endif
 
 %check
 %if 0%{?el7}
@@ -65,6 +70,7 @@ ctest -V %{?_smp_mflags}
 %changelog
 * Mon Jul 27 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.50-3
 - Don't use %cmake_build on el7/el8
+- Use %cmake_install on dists other than el7/el8
 
 * Mon Jul 27 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.50-2
 - Use %cmake_build instead of %make_build

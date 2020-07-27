@@ -1,15 +1,15 @@
 Name:           aws-sdk-cpp
 Version:        1.8.14
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
 Source0:        https://github.com/aws/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 %if 0%{?el7}
-BuildRequires:  cmake3 >= 3.1
+BuildRequires:  cmake3
 %else
-BuildRequires:  cmake >= 3.1
+BuildRequires:  cmake
 %endif
 
 BuildRequires:  gcc
@@ -66,16 +66,28 @@ sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
     -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
 %endif
+%if 0%{?rhel}
 %make_build
+%else
+%cmake_build
+%endif
 
 %install
+%if 0%{?rhel}
 %make_install
+%else
+%cmake_install
+%endif
 
 %check
+%if 0%{?rhel}
 %if 0%{?el7}
 ctest3 -V %{?_smp_mflags}
 %else
 ctest -V %{?_smp_mflags}
+%endif
+%else
+%ctest
 %endif
 
 %files
@@ -87,6 +99,9 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Mon Jul 27 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.14-2
+- Use cmake specific macros
+
 * Mon Jul 27 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.14-1
 - Bump to 1.8.14
 

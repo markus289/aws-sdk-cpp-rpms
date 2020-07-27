@@ -1,6 +1,6 @@
 Name:           aws-c-common
 Version:        0.4.50
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -36,7 +36,7 @@ sed -i -e "s/ -Werror//" cmake/AwsCFlags.cmake
 %else
 %cmake -DCMAKE_BUILD_TYPE:STRING=Release
 %endif
-%make_build
+%cmake_build
 
 %install
 %make_install
@@ -58,6 +58,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Mon Jul 27 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.50-2
+- Use %cmake_build instead of %make_build
+
 * Mon Jul 27 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.50-1
 - Bump to 0.4.50
 

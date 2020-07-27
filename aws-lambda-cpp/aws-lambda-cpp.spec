@@ -1,6 +1,6 @@
 Name:           aws-lambda-cpp
 Version:        0.2.6
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        C++ implementation of the AWS Lambda runtime
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -9,9 +9,9 @@ Patch0:         0001-include-64-bit-glibc.patch
 Patch1:         0002-use-proper-libdir.patch
 
 %if 0%{?el7}
-BuildRequires:  cmake3 >= 3.9
+BuildRequires:  cmake3
 %else
-BuildRequires:  cmake >= 3.9
+BuildRequires:  cmake
 %endif
 
 BuildRequires:  gcc-c++
@@ -32,7 +32,7 @@ This package contains the header files, libraries and cmake supplementals
 needed to develop applications that use aws-lambda-cpp.
 
 %prep
-%autosetup -p1
+%autosetup -S git
 
 %build
 %if 0%{?el7}
@@ -40,10 +40,18 @@ needed to develop applications that use aws-lambda-cpp.
 %else
 %cmake
 %endif
+%if 0%{?rhel}
 %make_build
+%else
+%cmake_build
+%endif
 
 %install
+%if 0%{?rhel}
 %make_install
+%else
+%cmake_install
+%endif
 
 %files
 %{_libdir}/libaws-lambda-runtime.so.*
@@ -54,6 +62,9 @@ needed to develop applications that use aws-lambda-cpp.
 %{_includedir}/aws
 
 %changelog
+* Mon Jul 27 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.6-5
+- Use cmake specific macros
+
 * Wed Mar 11 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.6-3
 - Really disable tests
 

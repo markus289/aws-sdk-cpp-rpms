@@ -62,7 +62,6 @@ ctest -V %{?_smp_mflags}
 %ctest
 %endif
 
-
 %files
 %{_libdir}/libaws-c-common.so.*
 

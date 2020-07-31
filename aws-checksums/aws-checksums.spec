@@ -1,6 +1,6 @@
 Name:           aws-checksums
 Version:        0.1.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon's CRC32c and CRC32 implementations
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -12,6 +12,7 @@ BuildRequires:  cmake3 >= 3.1
 BuildRequires:  cmake >= 3.1
 %endif
 
+BuildRequires:  aws-c-common-devel
 BuildRequires:  gcc
 
 %description
@@ -68,6 +69,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Fri Jul 31 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.8-2
+- This package now requires cmake macros from aws-c-common
+
 * Fri Jul 31 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.8-1
 - Bump to 0.1.8
 

@@ -1,22 +1,17 @@
 Name:           aws-sdk-cpp
 Version:        1.8.32
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
 Source0:        https://github.com/aws/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-%if 0%{?el7}
-BuildRequires:  cmake3
-%else
-BuildRequires:  cmake
-%endif
-
-BuildRequires:  gcc
-BuildRequires:  gcc-c++
 BuildRequires:  aws-c-common-devel
 BuildRequires:  aws-c-event-stream-devel
 BuildRequires:  aws-checksums-devel
+BuildRequires:  cmake
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  libcurl-devel
 BuildRequires:  openssl-devel
 BuildRequires:  pulseaudio-libs-devel
@@ -55,40 +50,17 @@ needed to develop applications that use aws-sdk-cpp.
 sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 
 %build
-%if 0%{?el7}
-%cmake3 \
-    -DBUILD_DEPS:BOOL=FALSE \
-    -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
-    -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
-%else
 %cmake \
     -DBUILD_DEPS:BOOL=FALSE \
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
     -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
-%endif
-%if 0%{?rhel}
-%make_build
-%else
 %cmake_build
-%endif
 
 %install
-%if 0%{?rhel}
-%make_install
-%else
 %cmake_install
-%endif
 
 %check
-%if 0%{?rhel}
-%if 0%{?el7}
-ctest3 -V %{?_smp_mflags}
-%else
-ctest -V %{?_smp_mflags}
-%endif
-%else
 %ctest
-%endif
 
 %files
 %{_libdir}/lib*.so
@@ -99,6 +71,9 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Fri Aug 21 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.32-2
+- Stop supporting RHEL/CentOS, simplify
+
 * Thu Aug 20 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.32-1
 - Bump to 1.8.32
 

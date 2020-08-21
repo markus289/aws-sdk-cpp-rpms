@@ -1,17 +1,12 @@
 Name:           aws-c-common
 Version:        0.4.52
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
 Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-%if 0%{?el7}
-BuildRequires:  cmake3 >= 3.0
-%else
-BuildRequires:  cmake >= 3.0
-%endif
-
+BuildRequires:  cmake
 BuildRequires:  gcc
 
 %description
@@ -31,36 +26,14 @@ needed to develop applications that use aws-c-common.
 sed -i -e "s/ -Werror//" cmake/AwsCFlags.cmake
 
 %build
-%if 0%{?el7}
-%cmake3 -DCMAKE_BUILD_TYPE:STRING=Release
-%else
 %cmake -DCMAKE_BUILD_TYPE:STRING=Release
-%endif
-# cmake_build is not yet available in el7/el8
-%if 0%{?rhel}
-%make_build
-%else
 %cmake_build
-%endif
 
 %install
-# cmake_install is not yet available in el7/el8
-%if 0%{?rhel}
-%make_install
-%else
 %cmake_install
-%endif
 
 %check
-%if 0%{?rhel}
-%if 0%{?el7}
-ctest3 -V %{?_smp_mflags}
-%else
-ctest -V %{?_smp_mflags}
-%endif
-%else
 %ctest
-%endif
 
 %files
 %{_libdir}/libaws-c-common.so.*
@@ -72,6 +45,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Fri Aug 21 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.52-2
+- Stop supporting RHEL/CentOS, simplify
+
 * Thu Aug 20 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.52-1
 - Bump to 0.4.52
 

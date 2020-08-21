@@ -1,20 +1,15 @@
 Name:           aws-c-event-stream
 Version:        0.1.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        C99 implementation of the vnd.amazon.eventstream content-type
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
 Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-%if 0%{?el7}
-BuildRequires:  cmake3
-%else
-BuildRequires:  cmake
-%endif
-
-BuildRequires:  gcc
 BuildRequires:  aws-c-common-devel
 BuildRequires:  aws-checksums-devel
+BuildRequires:  cmake
+BuildRequires:  gcc
 
 %description
 Amazon Web Services use a format called event stream encoding. It encodes
@@ -39,34 +34,14 @@ needed to develop applications that use aws-c-event-stream.
 %autosetup
 
 %build
-%if 0%{?el7}
-%cmake3
-%else
 %cmake
-%endif
-%if 0%{?rhel}
-%make_build
-%else
 %cmake_build
-%endif
 
 %install
-%if 0%{?rhel}
-%make_install
-%else
 %cmake_install
-%endif
 
 %check
-%if 0%{?rhel}
-%if 0%{?el7}
-ctest3 -V %{?_smp_mflags}
-%else
-ctest -V %{?_smp_mflags}
-%endif
-%else
 %ctest
-%endif
 
 %files
 %{_libdir}/libaws-c-event-stream.so.*
@@ -77,6 +52,9 @@ ctest -V %{?_smp_mflags}
 %{_includedir}/aws
 
 %changelog
+* Fri Aug 21 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.6-2
+- Stop supporting RHEL/CentOS, simplify
+
 * Fri Jul 31 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.6-1
 - Bump to 0.1.6
 

@@ -1,6 +1,6 @@
 Name:           aws-sdk-cpp
-Version:        1.8.32
-Release:        2%{?dist}
+Version:        1.8.37
+Release:        1%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -71,6 +71,9 @@ sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 %{_libdir}/pkgconfig
 
 %changelog
+* Sat Aug 29 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.37-1
+- Bump to 1.8.37
+
 * Fri Aug 21 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.32-2
 - Stop supporting RHEL/CentOS, simplify
 

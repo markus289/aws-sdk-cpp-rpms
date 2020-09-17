@@ -1,6 +1,6 @@
 Name:           aws-lambda-cpp
 Version:        0.2.6
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        C++ implementation of the AWS Lambda runtime
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -46,6 +46,9 @@ needed to develop applications that use aws-lambda-cpp.
 %{_includedir}/aws
 
 %changelog
+* Thu Sep 17 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.6-8
+- rebuilt
+
 * Fri Aug 21 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.6-7
 - Stop supporting RHEL/CentOS, simplify
 

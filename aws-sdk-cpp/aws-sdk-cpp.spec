@@ -1,6 +1,6 @@
 Name:           aws-sdk-cpp
-Version:        1.8.37
-Release:        1%{?dist}
+Version:        1.8.49
+Release:        0%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}

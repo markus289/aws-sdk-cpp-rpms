@@ -1,16 +1,13 @@
 Name:           aws-lambda-cpp
-Version:        0.2.6
-Release:        8%{?dist}
+Version:        0.2.7
+Release:        1%{?dist}
 Summary:        C++ implementation of the AWS Lambda runtime
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
 Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Patch0:         0001-include-64-bit-glibc.patch
-Patch1:         0002-use-proper-libdir.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-BuildRequires:  git
 BuildRequires:  libcurl-devel
 
 Requires:       libcurl
@@ -28,7 +25,7 @@ This package contains the header files, libraries and cmake supplementals
 needed to develop applications that use aws-lambda-cpp.
 
 %prep
-%autosetup -S git
+%autosetup
 
 %build
 %cmake
@@ -46,6 +43,9 @@ needed to develop applications that use aws-lambda-cpp.
 %{_includedir}/aws
 
 %changelog
+* Sun Oct 25 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.7-1
+- Bump to 0.2.7
+
 * Thu Sep 17 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.6-8
 - rebuilt
 

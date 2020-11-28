@@ -1,15 +1,18 @@
 Name:           aws-c-event-stream
 Version:        0.2.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        C99 implementation of the vnd.amazon.eventstream content-type
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
 Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-BuildRequires:  aws-c-common-devel
+BuildRequires:  aws-c-io-devel
 BuildRequires:  aws-checksums-devel
 BuildRequires:  cmake
 BuildRequires:  gcc
+
+Requires:       aws-c-io
+Requires:       aws-c-checksums
 
 %description
 Amazon Web Services use a format called event stream encoding. It encodes
@@ -23,7 +26,7 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 # the cmake files included in this package search for the following two
 # packages
-Requires:       aws-c-common-devel
+Requires:       aws-c-io-devel
 Requires:       aws-checksums-devel
 
 %description devel
@@ -52,6 +55,9 @@ needed to develop applications that use aws-c-event-stream.
 %{_includedir}/aws
 
 %changelog
+* Sat Nov 28 19:09:13 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-2
+- fix dependencies
+
 * Tue Nov 24 15:34:43 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-1
 - Bump to 0.2.5
 

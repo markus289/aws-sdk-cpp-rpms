@@ -1,10 +1,10 @@
 Name:           s2n
 Version:        0.10.21
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon's implementation of the TLS/SSL protocols
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
-Source0:        https://github.com/awslabs/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -48,5 +48,8 @@ sed -i -e 's/ -fvisibility=hidden//' CMakeLists.txt
 %{_libdir}/s2n
 
 %changelog
+* Sat Nov 28 16:26:42 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.10.21-2
+- Fixup URL to sources
+
 * Sat Nov 28 16:19:46 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.10.21-1
 - Initial RPM release

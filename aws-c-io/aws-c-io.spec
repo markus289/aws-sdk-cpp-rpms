@@ -1,6 +1,6 @@
 Name:           aws-c-io
 Version:        0.7.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        I/O and TLS module for the AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -34,15 +34,13 @@ needed to develop applications that use aws-c-common.
 %prep
 %autosetup
 
+# tests require network access
 %build
-%cmake
+%cmake -DBUILD_TESTING:BOOL=FALSE
 %cmake_build
 
 %install
 %cmake_install
-
-%check
-%ctest
 
 %files
 %{_libdir}/libaws-c-io.so.*
@@ -53,5 +51,8 @@ needed to develop applications that use aws-c-common.
 %{_includedir}/aws
 
 %changelog
+* Sat Nov 28 20:17:50 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.7.0-2
+- disable tests, as they require network access
+
 * Sat Nov 28 19:03:52 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.7.0-1
 - Initial RPM release

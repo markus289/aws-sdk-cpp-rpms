@@ -1,6 +1,6 @@
 Name:           aws-sdk-cpp
 Version:        1.8.95
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -71,6 +71,9 @@ sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 %{_libdir}/pkgconfig
 
 %changelog
+* Sun Nov 29 13:16:07 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.95-2
+- rebuilt
+
 * Sat Nov 28 19:49:31 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.95-1
 - Bump to 1.8.95
 

@@ -1,5 +1,5 @@
 Name:           aws-c-common
-Version:        0.4.59
+Version:        0.6.2
 Release:        1%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
@@ -23,10 +23,9 @@ needed to develop applications that use aws-c-common.
 
 %prep
 %autosetup
-sed -i -e "s/ -Werror//" cmake/AwsCFlags.cmake
 
 %build
-%cmake -DCMAKE_BUILD_TYPE:STRING=Release
+%cmake
 %cmake_build
 
 %install
@@ -45,6 +44,9 @@ sed -i -e "s/ -Werror//" cmake/AwsCFlags.cmake
 %{_includedir}/aws
 
 %changelog
+* Wed Jun 23 2021 Markus Rothe <markus.rothe@rite.cc> - 0.6.2-1
+- Bump to 0.6.2
+
 * Sun Oct 25 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.59-1
 - Bump to 0.4.59
 

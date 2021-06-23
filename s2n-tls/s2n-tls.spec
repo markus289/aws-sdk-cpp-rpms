@@ -1,6 +1,6 @@
-Name:           s2n
-Version:        0.10.21
-Release:        2%{?dist}
+Name:           s2n-tls
+Version:        1.0.10
+Release:        1%{?dist}
 Summary:        Amazon's implementation of the TLS/SSL protocols
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -13,7 +13,7 @@ BuildRequires:  openssl-devel
 Requires:       openssl-libs
 
 %description
-s2n is a C99 implementation of the TLS/SSL protocols that is designed to be
+s2n-tls is a C99 implementation of the TLS/SSL protocols that is designed to be
 simple, small, fast, and with security as a priority.
 
 %package devel
@@ -27,8 +27,7 @@ needed to develop applications that use s2n.
 
 %prep
 %autosetup
-# https://github.com/awslabs/s2n/issues/2401
-sed -i -e 's/ -fvisibility=hidden//' CMakeLists.txt
+sed -i -e 's/ -Werror//' CMakeLists.txt
 
 %build
 %cmake
@@ -48,6 +47,9 @@ sed -i -e 's/ -fvisibility=hidden//' CMakeLists.txt
 %{_libdir}/s2n
 
 %changelog
+* Wed Jun 23 2021 Markus Rothe <markus.rothe@rite.cc> - 1.0.10-1
+- Rename, bump to 1.0.10
+
 * Sat Nov 28 16:26:42 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.10.21-2
 - Fixup URL to sources
 

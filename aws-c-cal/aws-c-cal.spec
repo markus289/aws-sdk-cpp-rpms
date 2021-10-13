@@ -1,3 +1,7 @@
+# Copyright 2020 Markus Rothe
+# Distributed under the terms of the Boost Software License 1.0
+# SPDX-License-Identifier: BSL-1.0
+
 Name:           aws-c-cal
 Version:        0.4.5
 Release:        1%{?dist}

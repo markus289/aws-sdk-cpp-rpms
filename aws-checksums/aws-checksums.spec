@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: BSL-1.0
 
 Name:           aws-checksums
-Version:        0.1.10
+Version:        0.1.12
 Release:        1%{?dist}
 Summary:        Amazon's CRC32c and CRC32 implementations
 License:        ASL 2.0
@@ -11,7 +11,13 @@ URL:            https://github.com/awslabs/%{name}
 Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  aws-c-common-devel
+
+%if 0%{?el7}
+BuildRequires:  cmake3
+%else
 BuildRequires:  cmake
+%endif
+
 BuildRequires:  gcc
 
 %description
@@ -31,14 +37,30 @@ needed to develop applications that use aws-checksums.
 %autosetup
 
 %build
+%if 0%{?el7}
+%cmake3
+%else
 %cmake
+%endif
+%if 0%{?el7}
+%make_build
+%else
 %cmake_build
+%endif
 
 %install
+%if 0%{?el7}
+%make_install
+%else
 %cmake_install
+%endif
 
 %check
+%if 0%{?el7}
+ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
+%else
 %ctest
+%endif
 
 %files
 %{_libdir}/libaws-checksums.so.*
@@ -49,6 +71,9 @@ needed to develop applications that use aws-checksums.
 %{_includedir}/aws
 
 %changelog
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.1.12-1
+- Bump to 0.1.12, support EL7 and Amazon Linux 2
+
 * Tue Nov 24 15:36:26 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.10-1
 - Bump to 0.1.10
 

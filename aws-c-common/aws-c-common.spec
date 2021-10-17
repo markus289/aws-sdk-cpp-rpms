@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: BSL-1.0
 
 Name:           aws-c-common
-Version:        0.6.2
+Version:        0.6.14
 Release:        1%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
@@ -36,7 +36,7 @@ needed to develop applications that use aws-c-common.
 %cmake_install
 
 %check
-%ctest
+%{ctest --exclude-regex 'test_stack_trace_decoding|test_memtrace_stacks|promise_test_multiple_waiters'}
 
 %files
 %{_libdir}/libaws-c-common.so.*
@@ -48,6 +48,9 @@ needed to develop applications that use aws-c-common.
 %{_includedir}/aws
 
 %changelog
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.6.14-1
+- Bump to 0.6.14
+
 * Wed Jun 23 2021 Markus Rothe <markus.rothe@rite.cc> - 0.6.2-1
 - Bump to 0.6.2
 

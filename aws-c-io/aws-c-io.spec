@@ -79,7 +79,7 @@ needed to develop applications that use aws-c-common.
 * Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.10.12-1
 - Bump to 0.10.12, support EL7 and Amazon Linux 2
 
-* Sat Nov 28 Markus Rothe <markus.rothe@rite.cc> - 0.7.0-2
+* Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.7.0-2
 - disable tests, as they require network access
 
 * Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.7.0-1

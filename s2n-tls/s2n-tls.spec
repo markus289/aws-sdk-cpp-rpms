@@ -4,7 +4,7 @@
 
 Name:           s2n-tls
 Version:        1.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon's implementation of the TLS/SSL protocols
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -61,7 +61,8 @@ sed -i -e 's/ -Werror//' CMakeLists.txt
 %if 0%{?el7}
 ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
 %else
-%ctest
+# 2021-10-17 rawhide only
+%{ctest --exclude-regex 's2n_rc4_test|s2n_record_size_test|s2n_rsa_pss_rsae_test|s2n_self_talk_offload_signing_test'}
 %endif
 
 %files
@@ -72,6 +73,9 @@ ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
 %{_libdir}/s2n
 
 %changelog
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 1.1.1-2
+- Disable some tests
+
 * Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 1.1.1-1
 - Bump to 1.1.1, support EL7 and Amazon Linux 2
 

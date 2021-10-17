@@ -4,7 +4,7 @@
 
 Name:           aws-c-io
 Version:        0.10.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        I/O and TLS module for the AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -20,11 +20,11 @@ BuildRequires:  cmake
 %endif
 
 BuildRequires:  gcc
-BuildRequires:  s2n-devel
+BuildRequires:  s2n-tls-devel
 
 Requires:       aws-c-cal
 Requires:       aws-c-common
-Requires:       s2n
+Requires:       s2n-tls
 
 %description
 This is a module for the Amazon Web Services (AWS) SDK for C. It handles all
@@ -35,7 +35,7 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       aws-c-cal-devel
 Requires:       aws-c-common-devel
-Requires:       s2n-devel
+Requires:       s2n-tls-devel
 
 %description devel
 This package contains the header files, libraries and cmake supplementals
@@ -73,6 +73,9 @@ needed to develop applications that use aws-c-common.
 %{_includedir}/aws
 
 %changelog
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.10.12-2
+- s2n is now s2n-tls
+
 * Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.10.12-1
 - Bump to 0.10.12, support EL7 and Amazon Linux 2
 

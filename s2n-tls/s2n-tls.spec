@@ -81,8 +81,8 @@ ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
 * Wed Jun 23 2021 Markus Rothe <markus.rothe@rite.cc> - 1.0.10-1
 - Rename, bump to 1.0.10
 
-* Sat Nov 28 16:26:42 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.10.21-2
+* Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.10.21-2
 - Fixup URL to sources
 
-* Sat Nov 28 16:19:46 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.10.21-1
+* Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.10.21-1
 - Initial RPM release

@@ -4,7 +4,7 @@
 
 Name:           aws-c-common
 Version:        0.6.14
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -69,6 +69,9 @@ ctest3 -V %{?_smp_mflags} --exclude-regex 'test_stack_trace_decoding|test_memtra
 %{_includedir}/aws
 
 %changelog
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.6.14-3
+- Fixup support for EL7
+
 * Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.6.14-2
 - Support EL7
 

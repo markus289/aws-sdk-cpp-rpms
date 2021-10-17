@@ -53,7 +53,11 @@ needed to develop applications that use aws-c-common.
 %endif
 
 %check
+%if 0%{?el7}
+ctest3 -V %{?_smp_mflags} --exclude-regex 'test_stack_trace_decoding|test_memtrace_stacks|promise_test_multiple_waiters'
+%else
 %{ctest --exclude-regex 'test_stack_trace_decoding|test_memtrace_stacks|promise_test_multiple_waiters'}
+%endif
 
 %files
 %{_libdir}/libaws-c-common.so.*

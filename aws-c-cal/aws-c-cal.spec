@@ -79,5 +79,5 @@ ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
 * Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.5.12-1
 - Bump to 0.5.12, support EL7 and Amazon Linux 2
 
-* Sat Nov 28 16:42:18 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.5-1
+* Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.4.5-1
 - Initial RPM release

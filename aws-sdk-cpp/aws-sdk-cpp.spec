@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: BSL-1.0
 
 Name:           aws-sdk-cpp
-Version:        1.8.95
-Release:        2%{?dist}
+Version:        1.9.123
+Release:        1%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
@@ -13,7 +13,13 @@ Source0:        https://github.com/aws/%{name}/archive/%{version}.tar.gz#/%{name
 BuildRequires:  aws-c-common-devel
 BuildRequires:  aws-c-event-stream-devel
 BuildRequires:  aws-checksums-devel
+
+%if 0%{?el7}
+BuildRequires:  cmake3
+%else
 BuildRequires:  cmake
+%endif
+
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  libcurl-devel
@@ -54,17 +60,36 @@ needed to develop applications that use aws-sdk-cpp.
 sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 
 %build
+%if 0%{?el7}
+%cmake3 \
+    -DBUILD_DEPS:BOOL=FALSE \
+    -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
+    -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
+%else
 %cmake \
     -DBUILD_DEPS:BOOL=FALSE \
     -DAUTORUN_UNIT_TESTS:BOOL=FALSE \
     -DCUSTOM_MEMORY_MANAGEMENT:BOOL=FALSE
+%endif
+%if 0%{?el7}
+%make_build
+%else
 %cmake_build
+%endif
 
 %install
+%if 0%{?el7}
+%make_install
+%else
 %cmake_install
+%endif
 
 %check
+%if 0%{?el7}
+ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
+%else
 %ctest
+%endif
 
 %files
 %{_libdir}/lib*.so
@@ -75,13 +100,16 @@ sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 %{_libdir}/pkgconfig
 
 %changelog
-* Sun Nov 29 13:16:07 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.95-2
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 1.9.123-1
+- Bump to 1.9.123, support EL7 and Amazon Linux 2
+
+* Sun Nov 29 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.95-2
 - rebuilt
 
-* Sat Nov 28 19:49:31 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.95-1
+* Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.95-1
 - Bump to 1.8.95
 
-* Wed Nov 11 07:32:01 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.85-1
+* Wed Nov 11 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.85-1
 - Bump to 1.8.85
 
 * Sun Nov  1 2020 Markus Rothe <markus.rothe@rite.cc> - 1.8.79-1

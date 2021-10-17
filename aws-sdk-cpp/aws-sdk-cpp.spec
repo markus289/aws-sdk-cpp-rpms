@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: BSL-1.0
 
 Name:           aws-sdk-cpp
-Version:        1.9.123
+Version:        1.8.186
 Release:        1%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
@@ -100,6 +100,9 @@ ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 1.8.186-1
+- Bump/downgrade to 1.8.186
+
 * Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 1.9.123-1
 - Bump to 1.9.123, support EL7 and Amazon Linux 2
 

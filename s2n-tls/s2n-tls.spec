@@ -42,7 +42,7 @@ sed -i -e 's/ -Werror//' CMakeLists.txt
 %if 0%{?el7}
 %cmake3
 %else
-%cmake
+%cmake -DBUILD_TESTING:BOOL=FALSE
 %endif
 %if 0%{?el7}
 %make_build

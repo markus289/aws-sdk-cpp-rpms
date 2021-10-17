@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: BSL-1.0
 
 Name:           aws-c-io
-Version:        0.7.0
-Release:        2%{?dist}
+Version:        0.10.12
+Release:        1%{?dist}
 Summary:        I/O and TLS module for the AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -12,7 +12,13 @@ Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%
 
 BuildRequires:  aws-c-cal-devel
 BuildRequires:  aws-c-common-devel
+
+%if 0%{?el7}
+BuildRequires:  cmake3
+%else
 BuildRequires:  cmake
+%endif
+
 BuildRequires:  gcc
 BuildRequires:  s2n-devel
 
@@ -40,11 +46,23 @@ needed to develop applications that use aws-c-common.
 
 # tests require network access
 %build
+%if 0%{?el7}
+%cmake3 -DBUILD_TESTING:BOOL=FALSE
+%else
 %cmake -DBUILD_TESTING:BOOL=FALSE
+%endif
+%if 0%{?el7}
+%make_build
+%else
 %cmake_build
+%endif
 
 %install
+%if 0%{?el7}
+%make_install
+%else
 %cmake_install
+%endif
 
 %files
 %{_libdir}/libaws-c-io.so.*
@@ -55,8 +73,11 @@ needed to develop applications that use aws-c-common.
 %{_includedir}/aws
 
 %changelog
-* Sat Nov 28 20:17:50 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.7.0-2
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.10.12-1
+- Bump to 0.10.12, support EL7 and Amazon Linux 2
+
+* Sat Nov 28 Markus Rothe <markus.rothe@rite.cc> - 0.7.0-2
 - disable tests, as they require network access
 
-* Sat Nov 28 19:03:52 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.7.0-1
+* Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.7.0-1
 - Initial RPM release

@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: BSL-1.0
 
 Name:           aws-c-event-stream
-Version:        0.2.5
-Release:        5%{?dist}
+Version:        0.2.7
+Release:        1%{?dist}
 Summary:        C99 implementation of the vnd.amazon.eventstream content-type
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -12,7 +12,13 @@ Source0:        https://github.com/awslabs/%{name}/archive/v%{version}.tar.gz#/%
 
 BuildRequires:  aws-c-io-devel
 BuildRequires:  aws-checksums-devel
+
+%if 0%{?el7}
+BuildRequires:  cmake3
+%else
 BuildRequires:  cmake
+%endif
+
 BuildRequires:  gcc
 
 Requires:       aws-c-io
@@ -41,11 +47,30 @@ needed to develop applications that use aws-c-event-stream.
 %autosetup
 
 %build
+%if 0%{?el7}
+%cmake3
+%else
 %cmake
+%endif
+%if 0%{?el7}
+%make_build
+%else
 %cmake_build
+%endif
 
 %install
+%if 0%{?el7}
+%make_install
+%else
 %cmake_install
+%endif
+
+%check
+%if 0%{?el7}
+ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
+%else
+%ctest
+%endif
 
 %files
 %{_libdir}/libaws-c-event-stream.so.*
@@ -56,19 +81,22 @@ needed to develop applications that use aws-c-event-stream.
 %{_includedir}/aws
 
 %changelog
-* Sun Nov 29 13:10:50 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-5
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.2.7-1
+- Bump to 0.2.7, support EL7 and Amazon Linux 2
+
+* Sun Nov 29 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-5
 - fixup dependency
 
-* Sat Nov 28 20:39:15 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-4
+* Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-4
 - fixup last commit
 
-* Sat Nov 28 20:22:20 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-3
+* Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-3
 - disable tests, as they require network access
 
-* Sat Nov 28 19:09:13 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-2
+* Sat Nov 28 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-2
 - fix dependencies
 
-* Tue Nov 24 15:34:43 UTC 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-1
+* Tue Nov 24 2020 Markus Rothe <markus.rothe@rite.cc> - 0.2.5-1
 - Bump to 0.2.5
 
 * Sun Oct 25 2020 Markus Rothe <markus.rothe@rite.cc> - 0.1.6-4

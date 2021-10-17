@@ -4,7 +4,7 @@
 
 Name:           aws-c-common
 Version:        0.6.14
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Core C99 package for AWS SDK for C
 License:        ASL 2.0
 URL:            https://github.com/awslabs/%{name}
@@ -40,21 +40,21 @@ needed to develop applications that use aws-c-common.
 %cmake
 %endif
 %if 0%{?el7}
-%make_build
+%cmake3_build
 %else
 %cmake_build
 %endif
 
 %install
 %if 0%{?el7}
-%make_install
+%cmake3_install
 %else
 %cmake_install
 %endif
 
 %check
 %if 0%{?el7}
-ctest3 -V %{?_smp_mflags} --exclude-regex 'test_stack_trace_decoding|test_memtrace_stacks|promise_test_multiple_waiters'
+%{ctest3 --exclude-regex 'test_stack_trace_decoding|test_memtrace_stacks|promise_test_multiple_waiters'}
 %else
 %{ctest --exclude-regex 'test_stack_trace_decoding|test_memtrace_stacks|promise_test_multiple_waiters'}
 %endif
@@ -69,6 +69,9 @@ ctest3 -V %{?_smp_mflags} --exclude-regex 'test_stack_trace_decoding|test_memtra
 %{_includedir}/aws
 
 %changelog
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.6.14-4
+- Use newer macros on EL7
+
 * Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 0.6.14-3
 - Fixup support for EL7
 

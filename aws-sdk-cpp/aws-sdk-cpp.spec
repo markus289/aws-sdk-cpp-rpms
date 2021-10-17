@@ -4,11 +4,12 @@
 
 Name:           aws-sdk-cpp
 Version:        1.9.123
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
 Source0:        https://github.com/aws/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Patch0:         cmake-module-dir.patch
 
 BuildRequires:  aws-c-common-devel
 BuildRequires:  aws-c-event-stream-devel
@@ -56,7 +57,7 @@ This package contains the header files, libraries and cmake supplementals
 needed to develop applications that use aws-sdk-cpp.
 
 %prep
-%autosetup
+%autosetup -p1
 sed -i -e 's/ "-Werror" "-pedantic"//' cmake/compiler_settings.cmake
 
 %build
@@ -100,6 +101,9 @@ ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 1.9.123-2
+- Add patch to find cmake modules
+
 * Sun Oct 17 2021 Markus Rothe <markus.rothe@rite.cc> - 1.9.123-1
 - Bump to 1.9.123, support EL7 and Amazon Linux 2
 

@@ -1,0 +1,23 @@
+--- aws-sdk-cpp-1.9.119.orig/CMakeLists.txt	2021-10-11 19:18:56.000000000 +0000
++++ aws-sdk-cpp-1.9.119/CMakeLists.txt	2021-10-12 11:21:51.863173668 +0000
+@@ -109,9 +109,6 @@
+ # which could be used to search CMAKE modules by "include()" or "find_package()", but the default value is empty.
+ # Add ${CMAKE_INSTALL_LIBDIR}/cmake and ${CMAKE_PREFIX_PATH}/lib/cmake to search list
+ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+-set(AWS_MODULE_DIR "/${CMAKE_INSTALL_LIBDIR}/cmake")
+-string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${AWS_MODULE_DIR}")
+-list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
+ 
+ # include() will "load and run" cmake script
+ include(resolve_platform)
+@@ -152,6 +149,10 @@
+     set(CMAKE_INSTALL_LIBDIR "lib")
+ endif()
+ 
++set(AWS_MODULE_DIR "/${CMAKE_INSTALL_LIBDIR}/cmake")
++string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${AWS_MODULE_DIR}")
++list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
++
+ if (DEFINED CMAKE_PREFIX_PATH)
+     file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
+ endif()

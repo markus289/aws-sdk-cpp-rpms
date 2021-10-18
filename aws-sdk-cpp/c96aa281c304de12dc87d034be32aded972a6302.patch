@@ -1,4 +1,4 @@
-From 368fe4529a3537624dd7b30e94cd9b4c0dd16702 Mon Sep 17 00:00:00 2001
+From c96aa281c304de12dc87d034be32aded972a6302 Mon Sep 17 00:00:00 2001
 From: Markus Rothe <markus.rothe@rite.cc>
 Date: Mon, 18 Oct 2021 07:50:49 +0000
 Subject: [PATCH] add missing header
@@ -6,7 +6,8 @@ Subject: [PATCH] add missing header
 The error was: 'sleep_for' is not a member of 'std::this_thread'
 ---
  .../IdentityPoolOperationTest.cpp                                | 1 +
- 1 file changed, 1 insertion(+)
+ .../MediaStoreDataTest.cpp                                       | 1 +
+ 2 files changed, 2 insertions(+)
 
 diff --git a/aws-cpp-sdk-cognitoidentity-integration-tests/IdentityPoolOperationTest.cpp b/aws-cpp-sdk-cognitoidentity-integration-tests/IdentityPoolOperationTest.cpp
 index a7cb7d8413..8f9969ff54 100644
@@ -20,6 +21,18 @@ index a7cb7d8413..8f9969ff54 100644
  
  #include <aws/cognito-identity/CognitoIdentityClient.h>
  #include <aws/cognito-identity/CognitoIdentityErrors.h>
+diff --git a/aws-cpp-sdk-mediastore-data-integration-tests/MediaStoreDataTest.cpp b/aws-cpp-sdk-mediastore-data-integration-tests/MediaStoreDataTest.cpp
+index b04f2f1684..07c6bd7c50 100644
+--- a/aws-cpp-sdk-mediastore-data-integration-tests/MediaStoreDataTest.cpp
++++ b/aws-cpp-sdk-mediastore-data-integration-tests/MediaStoreDataTest.cpp
+@@ -26,6 +26,7 @@
+ #include <aws/testing/platform/PlatformTesting.h>
+ #include <aws/testing/TestingEnvironment.h>
+ #include <fstream>
++#include <thread>
+ 
+ using namespace Aws;
+ using namespace Aws::Utils;
 -- 
 2.31.1
 

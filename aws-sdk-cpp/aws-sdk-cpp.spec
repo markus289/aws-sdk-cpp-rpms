@@ -4,13 +4,13 @@
 
 Name:           aws-sdk-cpp
 Version:        1.8.186
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Amazon Web Services SDK for C++
 License:        ASL 2.0
 URL:            https://github.com/aws/%{name}
 Source0:        https://github.com/aws/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Patch0:         f7c1d1691991995a97b8d120cc1668212e1025b3.patch
-Patch1:         c96aa281c304de12dc87d034be32aded972a6302.patch
+Patch1:         18926d4f3d885e944564644d3ce6e4e210187b81.patch
 
 BuildRequires:  aws-c-common-devel
 BuildRequires:  aws-c-event-stream-devel
@@ -102,6 +102,9 @@ ctest3 --output-on-failure --force-new-ctest-process %{?_smp_mflags}
 %{_libdir}/pkgconfig
 
 %changelog
+* Mon Oct 18 2021 Markus Rothe <markus.rothe@rite.cc> - 1.8.186-3
+- update patch
+
 * Mon Oct 18 2021 Markus Rothe <markus.rothe@rite.cc> - 1.8.186-2
 - Add patches for security and to solve a compile error
 

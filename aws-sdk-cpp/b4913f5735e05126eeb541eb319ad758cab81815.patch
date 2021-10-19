@@ -1,4 +1,4 @@
-From a8b49d366b8311908b383fbec66d37c75a8dd961 Mon Sep 17 00:00:00 2001
+From b4913f5735e05126eeb541eb319ad758cab81815 Mon Sep 17 00:00:00 2001
 From: Markus Rothe <markus.rothe@rite.cc>
 Date: Mon, 18 Oct 2021 07:50:49 +0000
 Subject: [PATCH] add missing header
@@ -9,7 +9,8 @@ The error was: 'sleep_for' is not a member of 'std::this_thread'
  .../MediaStoreDataTest.cpp                                      | 1 +
  aws-cpp-sdk-redshift-integration-tests/RedshiftClientTest.cpp   | 1 +
  aws-cpp-sdk-s3control-integration-tests/S3ControlTest.cpp       | 2 ++
- 4 files changed, 5 insertions(+)
+ aws-cpp-sdk-sqs-integration-tests/QueueOperationTest.cpp        | 2 ++
+ 5 files changed, 7 insertions(+)
 
 diff --git a/aws-cpp-sdk-cognitoidentity-integration-tests/IdentityPoolOperationTest.cpp b/aws-cpp-sdk-cognitoidentity-integration-tests/IdentityPoolOperationTest.cpp
 index a7cb7d8413..8f9969ff54 100644
@@ -60,6 +61,19 @@ index bee546f6fe..042a1939f0 100644
  #include <aws/external/gtest.h>
  #include <aws/core/client/ClientConfiguration.h>
  #include <aws/core/client/DefaultRetryStrategy.h>
+diff --git a/aws-cpp-sdk-sqs-integration-tests/QueueOperationTest.cpp b/aws-cpp-sdk-sqs-integration-tests/QueueOperationTest.cpp
+index 4810be702a..8e293c58ec 100644
+--- a/aws-cpp-sdk-sqs-integration-tests/QueueOperationTest.cpp
++++ b/aws-cpp-sdk-sqs-integration-tests/QueueOperationTest.cpp
+@@ -3,6 +3,8 @@
+  * SPDX-License-Identifier: Apache-2.0.
+  */
+ 
++#include <thread>
++
+ #include <aws/external/gtest.h>
+ #include <aws/testing/ProxyConfig.h>
+ #include <aws/core/client/ClientConfiguration.h>
 -- 
 2.31.1
 

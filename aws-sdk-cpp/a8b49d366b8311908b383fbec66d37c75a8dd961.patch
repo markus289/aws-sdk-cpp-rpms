@@ -1,14 +1,15 @@
-From 18926d4f3d885e944564644d3ce6e4e210187b81 Mon Sep 17 00:00:00 2001
+From a8b49d366b8311908b383fbec66d37c75a8dd961 Mon Sep 17 00:00:00 2001
 From: Markus Rothe <markus.rothe@rite.cc>
 Date: Mon, 18 Oct 2021 07:50:49 +0000
 Subject: [PATCH] add missing header
 
 The error was: 'sleep_for' is not a member of 'std::this_thread'
 ---
- .../IdentityPoolOperationTest.cpp                                | 1 +
- .../MediaStoreDataTest.cpp                                       | 1 +
- aws-cpp-sdk-redshift-integration-tests/RedshiftClientTest.cpp    | 1 +
- 3 files changed, 3 insertions(+)
+ .../IdentityPoolOperationTest.cpp                               | 1 +
+ .../MediaStoreDataTest.cpp                                      | 1 +
+ aws-cpp-sdk-redshift-integration-tests/RedshiftClientTest.cpp   | 1 +
+ aws-cpp-sdk-s3control-integration-tests/S3ControlTest.cpp       | 2 ++
+ 4 files changed, 5 insertions(+)
 
 diff --git a/aws-cpp-sdk-cognitoidentity-integration-tests/IdentityPoolOperationTest.cpp b/aws-cpp-sdk-cognitoidentity-integration-tests/IdentityPoolOperationTest.cpp
 index a7cb7d8413..8f9969ff54 100644
@@ -46,6 +47,19 @@ index 789ed5d2e7..698fc0f080 100644
  
  #include <aws/external/gtest.h>
  #include <aws/core/utils/DateTime.h>
+diff --git a/aws-cpp-sdk-s3control-integration-tests/S3ControlTest.cpp b/aws-cpp-sdk-s3control-integration-tests/S3ControlTest.cpp
+index bee546f6fe..042a1939f0 100644
+--- a/aws-cpp-sdk-s3control-integration-tests/S3ControlTest.cpp
++++ b/aws-cpp-sdk-s3control-integration-tests/S3ControlTest.cpp
+@@ -4,6 +4,8 @@
+  */
+ 
+ 
++#include <thread>
++
+ #include <aws/external/gtest.h>
+ #include <aws/core/client/ClientConfiguration.h>
+ #include <aws/core/client/DefaultRetryStrategy.h>
 -- 
 2.31.1
 

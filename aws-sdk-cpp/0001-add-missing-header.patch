@@ -1,4 +1,4 @@
-From b4913f5735e05126eeb541eb319ad758cab81815 Mon Sep 17 00:00:00 2001
+From 7e569e2253e5ba97bbd3c48f1d8b46df72606a3f Mon Sep 17 00:00:00 2001
 From: Markus Rothe <markus.rothe@rite.cc>
 Date: Mon, 18 Oct 2021 07:50:49 +0000
 Subject: [PATCH] add missing header
@@ -6,11 +6,12 @@ Subject: [PATCH] add missing header
 The error was: 'sleep_for' is not a member of 'std::this_thread'
 ---
  .../IdentityPoolOperationTest.cpp                               | 1 +
+ .../auth/STSAssumeRoleCredentialsProviderTest.cpp               | 2 ++
  .../MediaStoreDataTest.cpp                                      | 1 +
  aws-cpp-sdk-redshift-integration-tests/RedshiftClientTest.cpp   | 1 +
  aws-cpp-sdk-s3control-integration-tests/S3ControlTest.cpp       | 2 ++
  aws-cpp-sdk-sqs-integration-tests/QueueOperationTest.cpp        | 2 ++
- 5 files changed, 7 insertions(+)
+ 6 files changed, 9 insertions(+)
 
 diff --git a/aws-cpp-sdk-cognitoidentity-integration-tests/IdentityPoolOperationTest.cpp b/aws-cpp-sdk-cognitoidentity-integration-tests/IdentityPoolOperationTest.cpp
 index a7cb7d8413..8f9969ff54 100644
@@ -24,6 +25,19 @@ index a7cb7d8413..8f9969ff54 100644
  
  #include <aws/cognito-identity/CognitoIdentityClient.h>
  #include <aws/cognito-identity/CognitoIdentityErrors.h>
+diff --git a/aws-cpp-sdk-identity-management-tests/auth/STSAssumeRoleCredentialsProviderTest.cpp b/aws-cpp-sdk-identity-management-tests/auth/STSAssumeRoleCredentialsProviderTest.cpp
+index 957aec321d..1e76fc4954 100644
+--- a/aws-cpp-sdk-identity-management-tests/auth/STSAssumeRoleCredentialsProviderTest.cpp
++++ b/aws-cpp-sdk-identity-management-tests/auth/STSAssumeRoleCredentialsProviderTest.cpp
+@@ -3,6 +3,8 @@
+  * SPDX-License-Identifier: Apache-2.0.
+  */
+ 
++#include <thread>
++
+ #include <aws/identity-management/auth/STSAssumeRoleCredentialsProvider.h>
+ #include <aws/sts/model/AssumeRoleRequest.h>
+ #include <aws/sts/STSClient.h>
 diff --git a/aws-cpp-sdk-mediastore-data-integration-tests/MediaStoreDataTest.cpp b/aws-cpp-sdk-mediastore-data-integration-tests/MediaStoreDataTest.cpp
 index b04f2f1684..07c6bd7c50 100644
 --- a/aws-cpp-sdk-mediastore-data-integration-tests/MediaStoreDataTest.cpp
